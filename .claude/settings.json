@@ -22,6 +22,12 @@
       "Bash(npx tsc*)",
       "Bash(npx eslint*)",
       "Bash(npx prettier*)"
+    ],
+    "ask": [
+      "Bash(git commit*)"
+    ],
+    "deny": [
+      "Bash(git push*)"
     ]
   }
 }
