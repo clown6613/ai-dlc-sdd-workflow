@@ -49,9 +49,10 @@ copy_file "${SCRIPT_DIR}/templates/spec.md"   "templates/spec.md"
 
 echo ""
 echo "🔧 Claude Code コマンド & Hooks"
-copy_file "${SCRIPT_DIR}/.claude/commands/sdd-intent.md" ".claude/commands/sdd-intent.md"
-copy_file "${SCRIPT_DIR}/.claude/commands/sdd-spec.md"   ".claude/commands/sdd-spec.md"
-copy_file "${SCRIPT_DIR}/.claude/commands/sdd-review.md" ".claude/commands/sdd-review.md"
+copy_file "${SCRIPT_DIR}/.claude/commands/sdd-intent.md"    ".claude/commands/sdd-intent.md"
+copy_file "${SCRIPT_DIR}/.claude/commands/sdd-spec.md"      ".claude/commands/sdd-spec.md"
+copy_file "${SCRIPT_DIR}/.claude/commands/sdd-implement.md" ".claude/commands/sdd-implement.md"
+copy_file "${SCRIPT_DIR}/.claude/commands/sdd-review.md"    ".claude/commands/sdd-review.md"
 copy_file "${SCRIPT_DIR}/.claude/settings.json"          ".claude/settings.json"
 
 echo ""

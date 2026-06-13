@@ -70,7 +70,9 @@ your-project/
 
 3. Mob Elaboration（チームでSpecをレビュー・承認）
 
-4. 実装（AI がタスクを1つずつ実装）
+4. タスク実行 + タスク管理ツール登録（オプション）
+   /sdd-implement specs/<feature>/spec.md
+   # Linear / GitHub Issues / Obsidian への登録 → タスクを1つずつ実装
 
 5. 品質ゲート（テスト・型チェック・lint — Hooksで自動実行）
 
@@ -91,6 +93,7 @@ your-project/
 | [`templates/spec.md`](./templates/spec.md) | Spec（仕様書）の構造テンプレート |
 | [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` コマンド定義（対話形式で Intent を作成） |
 | [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` コマンド定義 |
+| [`.claude/commands/sdd-implement.md`](./.claude/commands/sdd-implement.md) | `/sdd-implement` コマンド定義（タスク実行 + タスク管理ツール登録） |
 | [`.claude/commands/sdd-review.md`](./.claude/commands/sdd-review.md) | `/sdd-review` コマンド定義 |
 | [`.claude/settings.json`](./.claude/settings.json) | Hooks設定（ファイル保存時に型チェック・lint） |
 | [`setup.sh`](./setup.sh) | 既存プロジェクトへの導入スクリプト |
