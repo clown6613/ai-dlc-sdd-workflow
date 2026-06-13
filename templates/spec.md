@@ -42,8 +42,8 @@ WHEN [エラー条件2],
 ### 非機能要件
 
 ```
-The システム SHALL [パフォーマンス要件 — 例: p95 で 200ms 以内]
-The システム SHALL [セキュリティ要件]
+The システム SHALL [パフォーマンス要件 — 例: API レスポンスを p95 で 300ms 以内に返す]
+The システム SHALL [セキュリティ要件 — 例: すべての通信を HTTPS で暗号化する]
 The システム SHALL [可用性要件]
 ```
 
@@ -54,20 +54,27 @@ The システム SHALL [可用性要件]
 ### アーキテクチャ概要
 
 ```
-[コンポーネント図や説明]
+[コンポーネントとその責務を図または箇条書きで記述]
 
-例:
-  Client
-    ↓ GET /api/v1/reports/{id}/csv
-  API Handler
+例（ログイン機能）:
+  UI（LoginScreen）
+    ↓ 入力値バリデーション
+  AuthUseCase
+    ↓ 認証リクエスト
+  AuthRepository
+    ↓ API 呼び出し
+  AuthAPI（POST /api/v1/auth/login）
+    ↓ レスポンス
+  TokenStorage（ローカルへの保存）
     ↓
-  ReportService（ビジネスロジック）
+  ホーム画面へ遷移
+
+例（プッシュ通知）:
+  NotificationService
+    ↓ デバイストークン登録
+  PushAPI（POST /api/v1/devices）
     ↓
-  Database（集計データ取得）
-    ↓
-  CSVFormatter（フォーマット変換）
-    ↓
-  Response（CSV ストリーム）
+  NotificationRepository（ローカルキャッシュ更新）
 ```
 
 ### インターフェース定義
@@ -75,39 +82,40 @@ The システム SHALL [可用性要件]
 **API エンドポイント（該当する場合）:**
 
 ```
-メソッド: GET
+メソッド: POST
 パス: /api/v1/...
 認証: 必要 / 不要
 
 リクエスト:
-  パスパラメータ:
-    - id: string — リソースID
-  クエリパラメータ:
-    - period: "daily" | "monthly"
+  ボディ:
+    - email: string
+    - password: string
 
 レスポンス（成功）:
   ステータス: 200
-  ヘッダー: Content-Type: text/csv, Content-Disposition: attachment
-  ボディ: CSV データ
+  ボディ: { accessToken: string, expiresAt: number }
 
 レスポンス（エラー）:
-  404: リソースが存在しない
-  504: タイムアウト
+  401: 認証情報が不正
+  429: レートリミット超過
 ```
 
 **型定義（TypeScript の場合）:**
 
 ```typescript
 // 主要な型のみ記載
-interface ReportRequest {
-  id: string;
-  period: "daily" | "monthly";
+interface LoginRequest {
+  email: string
+  password: string
 }
 
-interface ReportRow {
-  date: string;
-  // ...
+interface AuthTokens {
+  accessToken: string
+  refreshToken: string
+  expiresAt: number
 }
+
+type AuthErrorCode = "INVALID_CREDENTIALS" | "RATE_LIMITED" | "NETWORK_ERROR"
 ```
 
 ### データフロー
@@ -120,11 +128,11 @@ interface ReportRow {
 
 ### エラーハンドリング方針
 
-| エラー | 原因 | 対処 |
-|--------|------|------|
-| 404 Not Found | ID が存在しない | エラーレスポンスを返す |
-| 504 Gateway Timeout | 処理が60秒超過 | 中間ファイルをクリーンアップし504を返す |
-| 500 Internal Server Error | 予期しないエラー | ログに記録し、汎用エラーを返す |
+| エラー | 原因 | ユーザーへの表示 | 処理 |
+|--------|------|----------------|------|
+| 401 Unauthorized | 認証情報が不正 | 「メールアドレスまたはパスワードが正しくありません」 | 再入力を促す |
+| 429 Too Many Requests | ログイン試行超過 | 「しばらくしてからお試しください」 | retryAfter 秒後に再試行可能に |
+| ネットワークエラー | 接続なし / タイムアウト | リトライボタン付きエラー画面 | ユーザー操作で再試行 |
 
 ---
 
@@ -145,10 +153,10 @@ interface ReportRow {
   - **成功条件:** [テスト可能な成功基準]
   - **品質チェック:** `[実行コマンド]`
 
-- [ ] **Task 3:** [タスク名]（← 品質ゲート）
-  - **内容:** テスト・型チェック・lint を実行してすべて通過させる
+- [ ] **Task N:** 品質ゲート
+  - **内容:** テスト・型チェック・lint をすべて通過させる
   - **成功条件:** テストカバレッジ 80% 以上、型エラーゼロ、lint エラーゼロ
-  - **品質チェック:** `npm test && tsc --noEmit && eslint . --max-warnings 0`
+  - **品質チェック:** `yarn test && tsc --noEmit && eslint . --max-warnings 0`
 
 ### 推定工数
 
@@ -166,11 +174,10 @@ interface ReportRow {
 チームが Spec をレビューする際に確認するポイント:
 
 - [ ] 要件が EARS 記法で記述されているか
-- [ ] 正常系・異常系の両方が網羅されているか
-- [ ] 非機能要件（パフォーマンス・セキュリティ）が含まれているか
+- [ ] 正常系・異常系・非機能要件の3種が網羅されているか
 - [ ] 設計がアーキテクチャ上の制約と整合しているか
 - [ ] タスクが SMAV 原則に従っているか（曖昧なタスクがないか）
 - [ ] 完了基準が自動テストで検証可能か
-- [ ] スコープ外の事項が明記されているか
+- [ ] スコープ外の事項が intent.md に明記されているか
 
 **承認:** __________________ 日付: __________
