@@ -60,9 +60,9 @@ your-project/
 ## ワークフロー概要
 
 ```
-1. Intent 作成（人間）
-   cp templates/intent.md specs/<feature>/intent.md
-   # Description・Context・Completion Criteria を記述
+1. Intent 作成（AIと対話）
+   /sdd-intent specs/<feature>/
+   # 6つの質問に答えるだけで intent.md が生成される
 
 2. Spec 生成（AI）
    /sdd-spec specs/<feature>/intent.md
@@ -89,6 +89,7 @@ your-project/
 | [`workflow-guide.md`](./workflow-guide.md) | Phase 1〜5 のステップバイステップ手順書 |
 | [`templates/intent.md`](./templates/intent.md) | Intent（意図）の記入テンプレート |
 | [`templates/spec.md`](./templates/spec.md) | Spec（仕様書）の構造テンプレート |
+| [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` コマンド定義（対話形式で Intent を作成） |
 | [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` コマンド定義 |
 | [`.claude/commands/sdd-review.md`](./.claude/commands/sdd-review.md) | `/sdd-review` コマンド定義 |
 | [`.claude/settings.json`](./.claude/settings.json) | Hooks設定（ファイル保存時に型チェック・lint） |
