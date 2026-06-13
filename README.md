@@ -70,9 +70,13 @@ your-project/
 
 3. Mob Elaboration（チームでSpecをレビュー・承認）
 
-4. タスク実行 + タスク管理ツール登録（オプション）
-   /sdd-implement specs/<feature>/spec.md
-   # Linear / GitHub Issues / Obsidian への登録 → タスクを1つずつ実装
+4. タスク管理ツールへの登録（任意）
+   /sdd-register specs/<feature>/
+   # Linear / GitHub Issues / Obsidian に登録
+
+5. 実装
+   /sdd-implement specs/<feature>/
+   # タスクを1つずつ実装
 
 5. 品質ゲート（テスト・型チェック・lint — Hooksで自動実行）
 
@@ -91,10 +95,11 @@ your-project/
 | [`workflow-guide.md`](./workflow-guide.md) | Phase 1〜5 のステップバイステップ手順書 |
 | [`templates/intent.md`](./templates/intent.md) | Intent（意図）の記入テンプレート |
 | [`templates/spec.md`](./templates/spec.md) | Spec（仕様書）の構造テンプレート |
-| [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` コマンド定義（対話形式で Intent を作成） |
-| [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` コマンド定義 |
-| [`.claude/commands/sdd-implement.md`](./.claude/commands/sdd-implement.md) | `/sdd-implement` コマンド定義（タスク実行 + タスク管理ツール登録） |
-| [`.claude/commands/sdd-review.md`](./.claude/commands/sdd-review.md) | `/sdd-review` コマンド定義 |
+| [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` — 対話形式で Intent を作成 |
+| [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` — Intent から Spec を生成 |
+| [`.claude/commands/sdd-register.md`](./.claude/commands/sdd-register.md) | `/sdd-register` — タスクを Linear / GitHub Issues / Obsidian に登録（任意） |
+| [`.claude/commands/sdd-implement.md`](./.claude/commands/sdd-implement.md) | `/sdd-implement` — Spec のタスクを順番に実装 |
+| [`.claude/commands/sdd-review.md`](./.claude/commands/sdd-review.md) | `/sdd-review` — 実装を Spec と照合してレポート |
 | [`.claude/settings.json`](./.claude/settings.json) | Hooks設定（ファイル保存時に型チェック・lint） |
 | [`setup.sh`](./setup.sh) | 既存プロジェクトへの導入スクリプト |
 
