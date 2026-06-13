@@ -1,7 +1,7 @@
 # SDD ワークフロー 手順書
 
 **対象:** Claude Code を使ったチーム開発  
-**前提:** [AI-DLC 基礎編](../docs/01-fundamentals.md)・[使い分けガイド](../docs/03-approaches.md)を読んでいること
+**前提:** AI-DLC の基礎概念（コアメンタルモデル・Intent・SMAV・Human in the Loop）を理解していること。参考: [AWS AI-DLC 公式ブログ](https://aws.amazon.com/jp/blogs/news/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle/)
 
 ---
 

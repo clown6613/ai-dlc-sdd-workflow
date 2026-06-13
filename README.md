@@ -1,7 +1,7 @@
 # SDD Workflow — Claude Code テンプレート
 
 **Spec-Driven Development（仕様駆動開発）** を Claude Code で実践するためのテンプレートリポジトリです。  
-サイバーエージェントの AI-DLC 教材に基づき、チーム開発向けに設計されています。
+AWS が提唱する AI-Driven Development Life Cycle（AI-DLC）の考え方に基づき、チーム開発向けに設計されています。
 
 ---
 
@@ -106,6 +106,6 @@ your-project/
 
 ## 参考
 
-- [AI-DLC 教材（はじめに）](../docs/00-introduction.md)
-- [SDD アプローチの解説](../docs/03-approaches.md)
-- [エレベータサイネージ事例（SDD + スクラム）](../docs/04-case-studies.md#case-3-エレベータサイネージ--sdd--スクラム融合)
+- [AI-Driven Development Life Cycle (AI-DLC) — AWS 公式ブログ](https://aws.amazon.com/jp/blogs/news/open-sourcing-adaptive-workflows-for-ai-driven-development-life-cycle/)
+- [Kiro: Spec-Driven Development — AWS](https://kiro.dev)
+- [Vibe Coding vs. Spec-Driven Development — RedMonk](https://redmonk.com/sogrady/2025/04/10/vibe-coding/)
