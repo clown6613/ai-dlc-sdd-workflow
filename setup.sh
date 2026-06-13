@@ -1,7 +1,7 @@
 #!/bin/bash
 # SDD ワークフロー セットアップスクリプト
 # 使い方: 導入したいプロジェクトのルートで実行する
-#   bash <(curl -s https://raw.githubusercontent.com/<your-org>/sdd-workflow/main/setup.sh)
+#   bash <(curl -s https://raw.githubusercontent.com/clown6613/ai-dlc-sdd-workflow/main/setup.sh)
 # または clone 後:
 #   bash /path/to/sdd-workflow/setup.sh
 
@@ -67,4 +67,4 @@ echo "  2. Claude Code で /sdd-spec specs/<feature-name>/intent.md を実行"
 echo "  3. チームで Spec をレビュー（Mob Elaboration）して承認"
 echo "  4. 実装 → /sdd-review specs/<feature-name>/spec.md でレビュー"
 echo ""
-echo "詳細: https://github.com/<your-org>/sdd-workflow"
+echo "詳細: https://github.com/clown6613/ai-dlc-sdd-workflow"

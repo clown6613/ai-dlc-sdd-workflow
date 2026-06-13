@@ -17,7 +17,7 @@
 
 ```bash
 # このリポジトリを clone
-git clone https://github.com/<your-org>/sdd-workflow /tmp/sdd-workflow
+git clone https://github.com/clown6613/ai-dlc-sdd-workflow /tmp/sdd-workflow
 
 # 導入したいプロジェクトのルートで実行
 cd /path/to/your-project
@@ -34,7 +34,7 @@ bash /tmp/sdd-workflow/setup.sh --force
 ```bash
 # 導入したいプロジェクトのルートで実行
 cd /path/to/your-project
-bash <(curl -s https://raw.githubusercontent.com/<your-org>/sdd-workflow/main/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/clown6613/ai-dlc-sdd-workflow/main/setup.sh)
 ```
 
 ---
