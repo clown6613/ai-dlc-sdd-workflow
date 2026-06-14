@@ -95,6 +95,7 @@ your-project/
 | [`workflow-guide.md`](./workflow-guide.md) | Phase 1〜5 のステップバイステップ手順書 |
 | [`templates/intent.md`](./templates/intent.md) | Intent（意図）の記入テンプレート |
 | [`templates/spec.md`](./templates/spec.md) | Spec（仕様書）の構造テンプレート |
+| [`.claude/commands/sdd-clarify.md`](./.claude/commands/sdd-clarify.md) | `/sdd-clarify` — 実装前に曖昧な要件・設計を一問ずつ解消 |
 | [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` — 対話形式で Intent を作成 |
 | [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` — Intent から Spec を生成 |
 | [`.claude/commands/sdd-register.md`](./.claude/commands/sdd-register.md) | `/sdd-register` — タスクを Linear / GitHub Issues / Obsidian に登録（任意） |
