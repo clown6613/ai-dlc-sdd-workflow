@@ -49,10 +49,14 @@ your-project/
 │   └── spec.md                        ← Specテンプレート（コピー元）
 ├── specs/                             ← 各機能のIntent・Specを置く
 └── .claude/
-    ├── settings.json                  ← Hooks（型チェック・lint自動実行）
+    ├── settings.json                  ← Hooks（型チェック・lint自動実行）+ git権限設定
     └── commands/
-        ├── sdd-spec.md                ← /sdd-spec コマンド
-        └── sdd-review.md             ← /sdd-review コマンド
+        ├── sdd-clarify.md             ← /sdd-clarify（単体でも使える曖昧点解消）
+        ├── sdd-intent.md              ← /sdd-intent（対話でIntent作成・clarify内蔵）
+        ├── sdd-spec.md                ← /sdd-spec（Spec生成）
+        ├── sdd-register.md            ← /sdd-register（タスク管理ツール登録・任意）
+        ├── sdd-implement.md           ← /sdd-implement（タスク実装）
+        └── sdd-review.md             ← /sdd-review（実装照合レポート）
 ```
 
 ---
@@ -61,12 +65,12 @@ your-project/
 
 ```
 1. Intent 作成（AIと対話）
-   /sdd-intent specs/<feature>/
-   # 6つの質問に答えるだけで intent.md が生成される
+   /sdd-intent
+   # 自由に話す → 機能名確定 → 詳細質問 → 曖昧点を解消（clarify内蔵）→ intent.md 生成
 
-2. Spec 生成（AI）
-   /sdd-spec specs/<feature>/intent.md
-   # AIがEARS要件・設計・SMAVタスクリストを生成
+2. Spec 生成
+   /sdd-spec specs/<feature>/
+   # EARS要件・設計・SMAVタスクリストを生成
 
 3. Mob Elaboration（チームでSpecをレビュー・承認）
 
@@ -76,11 +80,9 @@ your-project/
 
 5. 実装
    /sdd-implement specs/<feature>/
-   # タスクを1つずつ実装
+   # タスクを1つずつ実装・品質ゲート自動実行
 
-5. 品質ゲート（テスト・型チェック・lint — Hooksで自動実行）
-
-6. /sdd-review → Mob Construction → マージ
+6. /sdd-review specs/<feature>/ → Mob Construction → マージ
 ```
 
 詳細は [workflow-guide.md](./workflow-guide.md) を参照してください。
@@ -95,7 +97,7 @@ your-project/
 | [`workflow-guide.md`](./workflow-guide.md) | Phase 1〜5 のステップバイステップ手順書 |
 | [`templates/intent.md`](./templates/intent.md) | Intent（意図）の記入テンプレート |
 | [`templates/spec.md`](./templates/spec.md) | Spec（仕様書）の構造テンプレート |
-| [`.claude/commands/sdd-clarify.md`](./.claude/commands/sdd-clarify.md) | `/sdd-clarify` — 実装前に曖昧な要件・設計を一問ずつ解消 |
+| [`.claude/commands/sdd-clarify.md`](./.claude/commands/sdd-clarify.md) | `/sdd-clarify` — 曖昧な要件・設計を一問ずつ解消（`/sdd-intent` にも内蔵済み） |
 | [`.claude/commands/sdd-intent.md`](./.claude/commands/sdd-intent.md) | `/sdd-intent` — 対話形式で Intent を作成 |
 | [`.claude/commands/sdd-spec.md`](./.claude/commands/sdd-spec.md) | `/sdd-spec` — Intent から Spec を生成 |
 | [`.claude/commands/sdd-register.md`](./.claude/commands/sdd-register.md) | `/sdd-register` — タスクを Linear / GitHub Issues / Obsidian に登録（任意） |
